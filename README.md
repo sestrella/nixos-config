@@ -1,4 +1,4 @@
-# NixOS Configuration
+# NixOS config
 
 ## Getting Started
 
@@ -8,14 +8,14 @@ Clone the repository:
 git clone https://github.com/sestrella/nixos-config.git
 ```
 
-Link the configuration file:
+Symlink the configuration file:
 
 ```
-ln -s $PWD/configuration.nix /etc/nixos/
+sudo ln -s $PWD/configuration.nix /etc/nixos/
 ```
 
 Apply configuration changes:
 
 ```
-nixos-rebuild switch
+sudo nixos-rebuild switch
 ```
