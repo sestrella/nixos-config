@@ -103,6 +103,7 @@ in {
     isNormalUser = true;
     extraGroups = [
       "networkmanager"
+      "vboxusers"
       "wheel"
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
