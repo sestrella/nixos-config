@@ -7,11 +7,13 @@
     pkgs.slack
     pkgs.spotify
     pkgs.vagrant
-    pkgs.virtualbox
   ];
 
   programs.bat = {
     enable = true;
+    config = {
+      theme = "TwoDark";
+    };
   };
 
   programs.fish = {
