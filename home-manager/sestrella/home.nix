@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.docker
+    pkgs.ffmpeg
     pkgs.google-chrome
     pkgs.slack
     pkgs.spotify
