@@ -73,6 +73,8 @@ in {
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
+  services.avahi.enable = true;
+
   services.printing = {
     enable = true;
     drivers = with pkgs; [ hplip ];
