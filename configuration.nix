@@ -7,25 +7,18 @@
 let
   homeManager = import (fetchTarball {
     url = "https://github.com/rycee/home-manager/archive/release-19.03.tar.gz";
-    sha256 = "1pyxf611p1h1v30j3d337v2ng7qsajmkm6dsbrjzz466wjsp2ln4";
+    sha256 = "1y4d57girr6v2g2dc7av38s2fbc19haid2405z310rqyv8qai9wy";
   }) {};
 in {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+    ./specific.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.luks.devices = [
-    {
-      name = "cryptlvm";
-      device = "/dev/disk/by-uuid/d3faf633-2f55-4b43-90f6-400c0ec062ea";
-      preLVM = true;
-    }
-  ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -111,19 +104,9 @@ in {
     shell = pkgs.fish;
   };
 
-  # sudoers
-  security.sudo.extraRules = [{
-    users = [ "sestrella" ];
-    commands = [{
-      command = "/run/current-system/sw/bin/nixos-rebuild switch";
-      options = [ "NOPASSWD" ];
-    }];
-  }];
-
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.03"; # Did you read the comment?
-
 }
