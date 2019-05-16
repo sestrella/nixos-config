@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   homeManager = import (fetchTarball {
@@ -10,12 +10,6 @@ let
     sha256 = "1y4d57girr6v2g2dc7av38s2fbc19haid2405z310rqyv8qai9wy";
   }) {};
 in {
-  imports = [
-    # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
-    ./specific.nix
-  ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -41,6 +35,7 @@ in {
   # $ nix search wget
   environment.systemPackages = [
     homeManager.home-manager
+    pkgs.git
     pkgs.hwinfo
     pkgs.pciutils
     pkgs.vim

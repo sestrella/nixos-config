@@ -11,7 +11,7 @@ git clone https://github.com/sestrella/nixos-config.git
 Symlink the configuration file:
 
 ```
-sudo ln -s $PWD/configuration.nix /etc/nixos/
+sudo ln -s $PWD/machines/<name>/configuration.nix /etc/nixos/
 ```
 
 Apply configuration changes:
