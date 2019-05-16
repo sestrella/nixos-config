@@ -200,6 +200,8 @@ in {
       extraConfig = ''
         let g:ctrlp_user_command = '${pkgs.ripgrep}/bin/rg %s --files --color=never --glob ""'
         let g:ctrlp_use_caching = 0
+
+        noremap <C-n> :NERDTreeToggle<CR>
       '';
     };
   };
