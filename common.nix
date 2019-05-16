@@ -109,6 +109,7 @@ in {
       pkgs.docker
       pkgs.ffmpeg
       pkgs.google-chrome
+      pkgs.ripgrep
       pkgs.slack
       pkgs.spotify
       pkgs.vagrant
@@ -187,6 +188,7 @@ in {
       plugins = [
         "ctrlp"
         "nerdtree"
+        "typescript-vim"
         "vim-nix"
       ];
       settings = {
@@ -195,6 +197,10 @@ in {
         number = true;
         smartcase = true;
       };
+      extraConfig = ''
+        let g:ctrlp_user_command = '${pkgs.ripgrep}/bin/rg %s --files --color=never --glob ""'
+        let g:ctrlp_use_caching = 0
+      '';
     };
   };
 
