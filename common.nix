@@ -5,11 +5,15 @@
 { pkgs, ... }:
 
 let
-  homeManager = import (fetchTarball {
+  home-manager = builtins.fetchTarball {
     url = "https://github.com/rycee/home-manager/archive/release-19.03.tar.gz";
     sha256 = "1y4d57girr6v2g2dc7av38s2fbc19haid2405z310rqyv8qai9wy";
-  }) {};
+  };
 in {
+  imports = [
+    "${home-manager}/nixos"
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -33,12 +37,11 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = [
-    homeManager.home-manager
-    pkgs.git
-    pkgs.hwinfo
-    pkgs.pciutils
-    pkgs.vim
+  environment.systemPackages = with pkgs; [
+    git
+    hwinfo
+    pciutils
+    vim
   ];
 
   # Virtualization
@@ -97,6 +100,100 @@ in {
       "wheel"
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
+  };
+
+  home-manager.users.sestrella = {
+    home.packages = [
+      pkgs.docker
+      pkgs.ffmpeg
+      pkgs.google-chrome
+      pkgs.slack
+      pkgs.spotify
+      pkgs.vagrant
+    ];
+
+    programs.bat = {
+      enable = true;
+      config = {
+        theme = "GitHub";
+      };
+    };
+
+    programs.fish = {
+      enable = true;
+      shellAliases = {
+        cat = "bat";
+      };
+      shellAbbrs = {
+        # git
+        ga = "git add";
+        gaa = "git add --all";
+        gbr = "git branch";
+        gc = "git commit -v";
+        gco = "git checkout";
+        gd = "git diff";
+        gl = "git pull";
+        gp = "git push";
+        gst = "git status";
+        # tmux
+        ta = "tmux attach-session -t";
+        tkss = "tmux kill-session -t";
+        tksv = "tmux kill-server";
+        tl = "tmux list-sessions";
+        ts = "tmux new-session -s";
+      };
+    };
+
+    programs.git = {
+      enable = true;
+      userEmail = "sestrella.me@gmail.com";
+      userName = "Sebastián Estrella";
+      aliases = {
+        br = "branch";
+        ci = "commit";
+        co = "checkout";
+        st = "status";
+      };
+      extraConfig = {
+        core = {
+          editor = "vim";
+        };
+      };
+    };
+
+    programs.gnome-terminal = {
+      enable = true;
+      showMenubar = false;
+      profile = {
+        "aa6992ba-8e71-468e-abc5-f758989d57b1" = {
+          default = true;
+          visibleName = "sestrella";
+          showScrollbar = false;
+        };
+      };
+    };
+
+    programs.tmux = {
+      enable = true;
+      shortcut = "a";
+      baseIndex = 1;
+      terminal = "screen-256color";
+    };
+
+    programs.vim = {
+      enable = true;
+      plugins = [
+        "ctrlp"
+        "nerdtree"
+        "vim-nix"
+      ];
+      settings = {
+        expandtab = true;
+        ignorecase = true;
+        number = true;
+        smartcase = true;
+      };
+    };
   };
 
   # This value determines the NixOS release with which your system is to be
