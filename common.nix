@@ -39,6 +39,7 @@ in {
     homeManager.home-manager
     pkgs.git
     pkgs.hwinfo
+    pkgs.lsof
     pkgs.pciutils
     pkgs.vim
   ];
