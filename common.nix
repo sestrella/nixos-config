@@ -5,15 +5,11 @@
 { pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball {
+  homeManager = import (builtins.fetchTarball {
     url = "https://github.com/rycee/home-manager/archive/release-19.03.tar.gz";
     sha256 = "1y4d57girr6v2g2dc7av38s2fbc19haid2405z310rqyv8qai9wy";
-  };
+  }) {};
 in {
-  imports = [
-    "${home-manager}/nixos"
-  ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -39,11 +35,12 @@ in {
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    git
-    hwinfo
-    pciutils
-    vim
+  environment.systemPackages = [
+    homeManager.home-manager
+    pkgs.git
+    pkgs.hwinfo
+    pkgs.pciutils
+    pkgs.vim
   ];
 
   # Virtualization
@@ -103,8 +100,6 @@ in {
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
-
-  home-manager.users.sestrella = import ./home-manager/sestrella.nix { inherit pkgs; };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
