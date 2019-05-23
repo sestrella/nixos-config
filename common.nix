@@ -41,6 +41,7 @@ in {
     pkgs.hwinfo
     pkgs.lsof
     pkgs.pciutils
+    pkgs.tree
     pkgs.vim
   ];
 
