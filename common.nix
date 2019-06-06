@@ -6,7 +6,7 @@
 
 let
   homeManager = import (builtins.fetchTarball {
-    url = "https://github.com/stackbuilders/home-manager/archive/a6abaa918a48b25eb5b7229060d42d8382251702.tar.gz";
+    url = "https://github.com/rycee/home-manager/archive/29824a8cf6eabb32343a4af63d27ad6775c238ff.tar.gz";
     sha256 = "0hqw5zlg5rdby0vg8jnddqg4h45fh23yng13rmw9qniad155z6iy";
   }) {};
 in {
