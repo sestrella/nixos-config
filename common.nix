@@ -6,8 +6,8 @@
 
 let
   homeManager = import (builtins.fetchTarball {
-    url = "https://github.com/rycee/home-manager/archive/29824a8cf6eabb32343a4af63d27ad6775c238ff.tar.gz";
-    sha256 = "0hqw5zlg5rdby0vg8jnddqg4h45fh23yng13rmw9qniad155z6iy";
+    url = "https://github.com/rycee/home-manager/archive/cf0aad391c10473fa7613dcc41b1f6a366d03148.tar.gz";
+    sha256 = "0qpci9xns9gfq9b2a6c5cg99az1q3955iayq4rvk0w8gf8hixy8i";
   }) {};
 in {
   # Use the systemd-boot EFI boot loader.
