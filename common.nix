@@ -91,7 +91,10 @@ in {
   };
   services.xserver.desktopManager.gnome3.enable = true;
 
-  services.postgresql.enable = true;
+  services.postgresql ={
+    enable = true;
+    package = pkgs.postgresql_11;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sestrella = {
