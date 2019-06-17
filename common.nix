@@ -91,6 +91,8 @@ in {
   };
   services.xserver.desktopManager.gnome3.enable = true;
 
+  services.postgresql = import ./services/postgresql.nix { inherit pkgs; };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sestrella = {
     description = "Sebastián Estrella";
