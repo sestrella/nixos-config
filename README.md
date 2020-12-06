@@ -8,14 +8,19 @@ Clone the repository:
 git clone https://github.com/sestrella/nixos-config.git
 ```
 
-Symlink the configuration file:
+Symlink the directory:
 
 ```
-sudo ln -s $PWD/machines/<name>/configuration.nix /etc/nixos/
+sudo ln -s $PWD/nixos-config /etc/nixos
 ```
 
-Apply configuration changes:
+Apply the configuration changes:
 
 ```
 sudo nixos-rebuild switch
 ```
+
+## References
+
+- [Installation of NixOS with encrypted root](https://gist.github.com/martijnvermaat/76f2e24d0239470dd71050358b4d5134)
+- [Full Disk Encryption](https://nixos.wiki/wiki/Full_Disk_Encryption)
