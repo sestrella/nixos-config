@@ -4,19 +4,31 @@
 
 Clone the repository:
 
-```
+```sh
 git clone https://github.com/sestrella/nixos-config.git
+```
+
+Copy the hardware configuration:
+
+```sh
+cp /etc/nixos/hardware-configuration.nix nixos-config
+```
+
+Backup existing `nixos` directory:
+
+```sh
+sudo cp /etc/nixos /etc/nixos.backup
 ```
 
 Symlink the directory:
 
-```
+```sh
 sudo ln -s $PWD/nixos-config /etc/nixos
 ```
 
 Apply the configuration changes:
 
-```
+```sh
 sudo nixos-rebuild switch
 ```
 
