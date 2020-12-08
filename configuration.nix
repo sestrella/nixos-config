@@ -71,7 +71,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sestrella = {
-    description = "Sebastian Estrella";
+    description = "Sebastián Estrella";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     isNormalUser = true;
     shell = pkgs.fish;
