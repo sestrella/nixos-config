@@ -5,10 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./boot/initrd.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
@@ -20,12 +21,6 @@
     enableCryptodisk = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/disk/by-uuid/235051ec-177a-405e-a6f0-754e642e57dc";
-      preLVM = true;
-    };
-  };
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

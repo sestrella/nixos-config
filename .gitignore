@@ -1,1 +1,2 @@
+boot/initrd.nix
 hardware-configuration.nix
