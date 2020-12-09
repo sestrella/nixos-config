@@ -1,2 +1,1 @@
-boot/initrd.nix
-hardware-configuration.nix
+machine/current
