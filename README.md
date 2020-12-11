@@ -11,7 +11,33 @@ git clone https://github.com/sestrella/nixos-config.git
 Copy the hardware configuration:
 
 ```sh
-cp /etc/nixos/hardware-configuration.nix nixos-config
+cp /etc/nixos/hardware-configuration.nix machine/<name>/
+```
+
+Add a configuration file `default.nix`:
+
+```nix
+# machine/<name>/default.nix
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  boot.initrd.luks.devices = {
+    root = {
+      device = "/dev/disk/by-uuid/<uuid>";
+      preLVM = true;
+    };
+  };
+}
+```
+
+Symlink machine configuration:
+
+```sh
+ln -s $PWD/machine/<name> machine/current
 ```
 
 Backup existing `nixos` directory:
@@ -23,7 +49,7 @@ sudo cp /etc/nixos /etc/nixos.backup
 Symlink the directory:
 
 ```sh
-sudo ln -s $PWD/nixos-config /etc/nixos
+sudo ln -s $PWD /etc/nixos
 ```
 
 Apply the configuration changes:
