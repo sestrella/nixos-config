@@ -86,6 +86,10 @@
             command = "/run/current-system/sw/bin/nixos-rebuild switch";
             options = [ "NOPASSWD" ];
           }
+          {
+            command = "/run/current-system/sw/bin/systemctl restart NetworkManager";
+            options = [ "NOPASSWD" ];
+          }
         ];
       }
     ];
