@@ -73,6 +73,7 @@
     description = "Sebastián Estrella";
     extraGroups = [
       "docker"
+      "networkmanager"
       "wheel"
     ]; # Enable ‘sudo’ for the user.
     isNormalUser = true;
