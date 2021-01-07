@@ -101,6 +101,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.shells = with pkgs; [
+    fish
+  ];
+
   environment.systemPackages = with pkgs; [
     git
     vim
