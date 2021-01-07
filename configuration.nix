@@ -54,6 +54,8 @@
     desktopManager.gnome3.enable = true;
   };
 
+  services.postgresql.enable = true;
+
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
