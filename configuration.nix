@@ -58,6 +58,9 @@
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
 
+  # Enable PostgreSQL
+  services.postgresql.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
