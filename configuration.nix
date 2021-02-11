@@ -4,7 +4,18 @@
 
 { pkgs, ... }:
 
-{
+let
+  epson-escpr = pkgs.epson-escpr.overrideAttrs (_: {
+    version = "1.7.8";
+    src = pkgs.fetchurl {
+      urls = [
+        "https://download3.ebz.epson.net/dsc/f/03/00/12/04/32/1a455ef8618def65700ca4e446311c2fb43cd839/epson-inkjet-printer-escpr-1.7.8-1lsb3.2.tar.gz"
+        "https://web.archive.org/web/https://download3.ebz.epson.net/dsc/f/03/00/12/04/32/1a455ef8618def65700ca4e446311c2fb43cd839/epson-inkjet-printer-escpr-1.7.8-1lsb3.2.tar.gz"
+      ];
+      sha256 = "1pygg2bd2gh27dc65h3dzwrpvi6bq5c87wl0ldchqlc2b3blsx6p";
+    };
+  });
+in {
   imports = [
     # Include the results of the hardware scan.
     ./machine/current
@@ -62,7 +73,17 @@
   services.postgresql.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [
+      epson-escpr
+    ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
 
   # Enable sound.
   sound.enable = true;
