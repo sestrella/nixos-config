@@ -71,6 +71,7 @@ in {
 
   # Enable PostgreSQL
   services.postgresql.enable = true;
+  services.redis.enable = true;
 
   # Enable CUPS to print documents.
   services.printing = {
