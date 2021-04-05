@@ -105,24 +105,7 @@ in {
     shell = pkgs.fish;
   };
 
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
-        users = [ "sestrella" ];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild switch";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl restart NetworkManager";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
-  };
+  security.sudo.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -12,4 +12,6 @@ in {
       preLVM = true;
     };
   };
+
+  networking.hostName = "precision-5520";
 }
