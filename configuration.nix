@@ -136,6 +136,8 @@ in {
     virtualbox.host.enable = true;
   };
 
+  users.extraGroups.vboxusers.members = [ "sestrella" ];
+
   nix.gc = {
     automatic = true;
     # config
